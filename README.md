@@ -1,6 +1,6 @@
 # Cookies
 
-Inspired by [https://github.com/jed/cookies](jed/cookies), but simpler, this has no dependencies and different defaults.
+Inspired by [jed/cookies](https://github.com/jed/cookies), but simpler, this has no dependencies and different defaults.
 
 ## Install
 
