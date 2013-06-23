@@ -1,6 +1,25 @@
 {
   "name": "cookies",
   "version": "0.2.0",
-  "description": "Cookies!",
-  "main": "./cookies.js"
+  "description": "HTTP(S) server-side cookie handling",
+  "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
+  "license": "MIT",
+  "keywords": [
+    "cookie",
+    "cookies",
+    "http",
+    "https",
+    "server",
+    "client"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chbrown/cookies.git"
+  },
+  "devDependencies": {
+    "tap": "*"
+  },
+  "scripts": {
+    "test": "tap test"
+  }
 }

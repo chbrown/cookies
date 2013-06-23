@@ -1,10 +1,13 @@
-var Cookies = require('./cookies'),
-  http = require('http');
+var Cookies = require('./');
+var http = require('http');
 
 Cookies.prototype.defaults = function() {
   // expire 1 month in the future
-  var expires = new Date(Date.now() + (31 * 24 * 60 * 60 * 1000));
-  return {expires: expires};
+  var one_month_from_now = new Date(Date.now() + (31 * 24 * 60 * 60 * 1000));
+  return {
+    expires: one_month_from_now, // <-- a Date object
+    path: '/'
+  };
 };
 
 http.createServer(function(req, res) {
@@ -28,4 +31,6 @@ http.createServer(function(req, res) {
     res.write('You have been to ' + page + ' ' + history[page] + ' times.\n');
   }
   res.end();
-}).listen(8383, '127.0.0.1');
+}).listen(8383, '127.0.0.1', function() {
+  console.log('Serving example cookies server at localhost:8383');
+});
