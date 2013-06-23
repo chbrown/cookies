@@ -79,7 +79,7 @@ Possible options:
 }
 ```
 
-Does not require that `request` was set in the `new Cookies(.., response)` constructor.
+Does not require that `request` was set in the `new Cookies(..., response)` constructor.
 
 ### cookies.del(name, [options])
 
@@ -92,7 +92,7 @@ Set cookie's value to `''`, and it's expire date to the beginning of epoch time,
 
 * `default_options` Object | Function Base used for all `set()` calls.
 
-Set this to an object, or function that returns an object, using the possible options from the `set()` section, above.
+Set this to an object, or function that returns an object, using the possible options from the [`set()` section](#cookiessetname-value-options).
 
 ### Cookies.serialize(name, value, options)
 
