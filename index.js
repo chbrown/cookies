@@ -48,8 +48,6 @@ Cookies.prototype.set = function(name, value, opts) {
     }
   }
 
-  console.error(default_opts, Cookies.serialize(name, value, opts));
-
   set_cookie_headers.push(Cookies.serialize(name, value, opts));
   this.res.setHeader('Set-Cookie', set_cookie_headers);
 
@@ -80,5 +78,5 @@ Cookies.serialize = function(name, value, cookie) {
 };
 
 Cookies.attach = function(req, res) {
-  req.cookies = new Cookies(res, res);
+  (req || res).cookies = new Cookies(res, res);
 };
