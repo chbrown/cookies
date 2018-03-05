@@ -12,14 +12,13 @@
     "server",
     "client"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/chbrown/cookies.git"
-  },
+  "repository": "git://github.com/chbrown/cookies.git",
   "devDependencies": {
-    "tap": "*"
+    "@types/node": "latest",
+    "typescript": "^2.7.2"
   },
   "scripts": {
-    "test": "tap test"
+    "prepare": "tsc -d",
+    "clean": "tsc -d --listEmittedFiles | sed 's/^TSFILE: //' | xargs rm -v"
   }
 }
