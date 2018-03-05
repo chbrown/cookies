@@ -36,7 +36,7 @@ npm install git://github.com/chbrown/cookies.git
 
 Create new `cookies` object, which provides `get`, `set`, and `del` methods.
 
-    req.cookies = new Cookies(req, res);
+    req.cookies = new Cookies(req, res)
 
 ### Cookies.attach([request], [response])
 
@@ -58,7 +58,7 @@ Does not require that `response` was set in the `new Cookies(request, ...)` cons
 
 Adds a cookie to the queued 'Set-Cookie' headers for the current response.
 Can be called multiple times; it will not clear cookies previously added to the response.
-(Use `response.removeHeader('Set-Cookie');` if you want to remove pending cookies.)
+(Use `response.removeHeader('Set-Cookie')` if you want to remove pending cookies.)
 
 Obeys [RFC 2109](http://www.ietf.org/rfc/rfc2109.txt) (mostly) when formatting the string.
 
@@ -105,42 +105,42 @@ Serialize a cookie name, value, and options into the string representation that 
 ## Demo [`server.js`](server.js)
 
 ```javascript
-var Cookies = require('cookies');
-var http = require('http');
+var Cookies = require('cookies')
+var http = require('http')
 
 Cookies.prototype.defaults = function() {
   // expire 1 month in the future
-  var one_month_from_now = new Date(Date.now() + (31 * 24 * 60 * 60 * 1000));
+  var one_month_from_now = new Date(Date.now() + (31 * 24 * 60 * 60 * 1000))
   return {
     expires: one_month_from_now, // <-- a Date object
     path: '/'
-  };
-};
+  }
+}
 
 http.createServer(function(req, res) {
-  req.cookies = new Cookies(req, res);
+  req.cookies = new Cookies(req, res)
 
-  var history = {};
-  var history_json = req.cookies.get('history');
+  var history = {}
+  var history_json = req.cookies.get('history')
   try {
-    history = JSON.parse(history_json);
+    history = JSON.parse(history_json)
   }
   catch (exc) {
-    console.error(exc);
+    console.error(exc)
   }
-  history[req.url] = (history[req.url] || 0) + 1;
+  history[req.url] = (history[req.url] || 0) + 1
 
-  var new_history_json = JSON.stringify(history);
-  req.cookies.set('history', new_history_json);
+  var new_history_json = JSON.stringify(history)
+  req.cookies.set('history', new_history_json)
 
-  res.writeHead(200);
+  res.writeHead(200)
   for (var page in history) {
-    res.write('You have been to ' + page + ' ' + history[page] + ' times.\n');
+    res.write('You have been to ' + page + ' ' + history[page] + ' times.\n')
   }
-  res.end();
+  res.end()
 }).listen(8383, '127.0.0.1', function() {
-  console.log('Serving example cookies server at localhost:8383');
-});
+  console.log('Serving example cookies server at localhost:8383')
+})
 ```
 
 ## License
