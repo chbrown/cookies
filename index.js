@@ -1,5 +1,4 @@
-'use strict'; /*jslint node: true, es5: true, indent: 2 */
-var Cookies = module.exports = function(req, res) {
+var Cookies = function(req, res) {
   this.req = req;
   this.res = res;
   this.cookies = null;
@@ -8,7 +7,7 @@ var Cookies = module.exports = function(req, res) {
 // `defaults` exists at the prototype level so we can have one closure for every request.
 Cookies.prototype.defaults = function() {
   return {
-    path: '/'
+    path: '/',
   };
 };
 
@@ -34,16 +33,15 @@ Cookies.prototype.get = function(name) {
   return this.cookies[name];
 };
 
-Cookies.prototype.set = function(name, value, opts) {
+Cookies.prototype.set = function(name, value, opts = {}) {
   if (!this.res) throw new Error('You must specify at least: new Cookies(..., ServerResponse)');
   var existing_set_cookie = this.res.getHeader('Set-Cookie');
   var set_cookie_headers = existing_set_cookie ? [existing_set_cookie] : [];
 
-  if (opts === undefined) opts = {};
   var default_opts = this.defaults.call ? this.defaults() : this.defaults;
   for (var key in default_opts) {
     // the defaults only overwrite underfined values
-    if (default_opts.hasOwnProperty(key) && opts[key] === undefined) {
+    if (Object.prototype.hasOwnProperty.call(default_opts, key) && opts[key] === undefined) {
       opts[key] = default_opts[key];
     }
   }
@@ -54,8 +52,7 @@ Cookies.prototype.set = function(name, value, opts) {
   return this; // chainable
 };
 
-Cookies.prototype.del = function(name, opts) {
-  if (opts === undefined) opts = {};
+Cookies.prototype.del = function(name, opts = {}) {
   if (opts.expires === undefined) opts.expires = new Date(0);
   return this.set(name, '', opts); // chainable
 };
@@ -80,3 +77,5 @@ Cookies.serialize = function(name, value, cookie) {
 Cookies.attach = function(req, res) {
   (req || res).cookies = new Cookies(res, res);
 };
+
+module.exports = Cookies;
