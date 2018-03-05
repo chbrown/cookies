@@ -145,4 +145,5 @@ http.createServer(function(req, res) {
 
 ## License
 
-Copyright © 2012-2013 Christopher Brown. [MIT Licensed](LICENSE).
+Copyright © 2012-2013 Christopher Brown.
+[MIT Licensed](https://chbrown.github.io/licenses/MIT/#2012-2013).
