@@ -1,6 +1,6 @@
 {
   "name": "cookies",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "HTTP(S) server-side cookie handling",
   "author": "Christopher Brown <io@henrian.com> (http://henrian.com)",
   "license": "MIT",
